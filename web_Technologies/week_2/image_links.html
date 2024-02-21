@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Links</title>
+  <style>
+    /* Basic styling */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 10px 20px;
+      text-align: center;
+    }
+    nav {
+      background-color: #444;
+      padding: 10px 20px;
+      text-align: center;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+    section {
+      padding: 20px;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 10px;
+    }
+    .gallery img {
+      width: 100%;
+      height: auto;
+    }
+    .menu {
+      list-style: none;
+      padding: 0;
+    }
+    .menu li {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Welcome to my Image Gallery</h1>
+  </header>
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#menu">Menu</a>
+  </nav>
+
+  <section id="home">
+    <h2>Home</h2>
+    <p>Welcome to our website! Explore the sections below.</p>
+    <a href="https://https://techworld-it.com"><img src="images/t2.jpg" alt="Technology" width="100%"></a>
+  </section>
+
+  <section id="gallery">
+    <h2>Gallery</h2>
+    <div class="gallery">
+      <a href="https://www.nature.com"><img src="images/n1.jpg" alt="Nature 1"></a>
+      <a href="https://www.nature.com"><img src="images/n2.jpg" alt="Nature 2"></a>
+      <a href="https://www.nature.com"><img src="images/n3.jpg" alt="Nature 3"></a>
+    </div>
+  </section>
+
+  <section id="menu">
+    <h2>Menu</h2>
+    <ul class="menu">
+      <li><a href="https://www.healthline.com/nutrition/50-super-healthy-foods">
+        <figure><img src="images/f1.jpg" alt="Food 1" width="30%"><figcaption>Bread</figcaption></figure></a></li>
+      <li><a href="https://www.healthline.com/nutrition/50-super-healthy-foods">
+        <figure><img src="images/f4.jpg" alt="Food 2" width="30%"><figcaption>Eggs</figcaption></figure></a></li>
+      <li><a href="https://www.healthline.com/nutrition/50-super-healthy-foods">
+        <figure><img src="images/f3.jpg" alt="Food 3" width="30%"><figcaption>Breakfast</figcaption></figure></a></li>
+    </ul>
+  </section>
+
+</body>
+</html>
