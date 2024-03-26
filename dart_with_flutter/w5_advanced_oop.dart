@@ -24,7 +24,7 @@ class Teacher {
 
 class School {
   void createObjects() {
-    var student = Student('John Doe', 15, 10);
+    var student = Student('Bells Almond', 15, 10);
     var teacher = Teacher('Jane Smith', 35, 'Math');
 
     student.printInfo();
