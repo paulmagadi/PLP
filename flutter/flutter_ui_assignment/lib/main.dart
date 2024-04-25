@@ -1,27 +1,32 @@
 import 'package:flutter/material.dart';
+import 'splash_screen.dart';
+import 'login_page.dart';
+import 'home_page.dart';
 
-void main(){
-  runApp(const SplashScreen());
+void main() {
+  runApp(MyApp());
 }
 
-class SplashScreen extends StatelessWidget {
-  const SplashScreen({super.key});
-
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar (
-          title: const Center(
-            child: Text("Hello"),
-          ),
-        ),
-        body: const Center(
-        child: Image(
-          image: AssetImage('images/sqlogo.jpg')
-          ),
-    ),
-    ),
+      title: 'Flutter UI Assignment',
+      initialRoute: '/',
+      routes: {
+        '/': (context) => SplashScreen(),
+        '/login': (context) => LoginPage(),
+        '/home': (context) => HomePage(),
+      },
+      onGenerateRoute: (settings) {
+        if (settings.name == '/') {
+          // Add a delay to simulate splash screen duration
+          Future.delayed(Duration(seconds: 3), () {
+            Navigator.pushReplacementNamed(context, '/login');
+          });
+        }
+        return null;
+      },
     );
   }
 }

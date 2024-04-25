@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Center(
-        child: Image.asset('images/sqlogo.jpg'),
+        child: Image(
+          image: AssetImage('images/sqlogo.jpg')
       ),
+    ),
     );
   }
 }
