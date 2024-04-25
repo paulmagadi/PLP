@@ -16,6 +16,11 @@ class SplashScreen extends StatelessWidget {
             child: Text("Hello"),
           ),
         ),
+        body: const Center(
+        child: Image(
+          image: AssetImage('images/sqlogo.jpg')
+          ),
+    ),
     ),
     );
   }
