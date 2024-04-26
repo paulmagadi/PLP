@@ -195,6 +195,8 @@ class _HomeState extends State<Home> {
     );
   }
 
+
+//App Bar
   AppBar _buildAppBar() {
     return AppBar(
       backgroundColor: tdBGColor,
