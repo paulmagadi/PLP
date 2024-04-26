@@ -169,14 +169,14 @@ class _HomeState extends State<Home> {
 
   Widget searchBox() {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 15),
+      padding:const EdgeInsets.symmetric(horizontal: 15),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
       ),
       child: TextField(
         onChanged: (value) => _runFilter(value),
-        decoration: InputDecoration(
+        decoration:const InputDecoration(
           contentPadding: EdgeInsets.all(0),
           prefixIcon: Icon(
             Icons.search,
@@ -200,12 +200,12 @@ class _HomeState extends State<Home> {
       backgroundColor: tdBGColor,
       elevation: 0,
       title: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        Icon(
+        const Icon(
           Icons.menu,
           color: tdBlack,
           size: 30,
         ),
-        Container(
+        SizedBox(
           height: 40,
           width: 40,
           child: ClipRRect(
