@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
-
 import '../model/todo.dart';
 import '../constants/colors.dart';
 import '../widgets/todo_item.dart';
+
+enum TaskCategory {
+  all,
+  completed,
+  pending,
+}
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -25,7 +30,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: tdBGColor,
+      backgroundColor: colorBGColor,
       appBar: _buildAppBar(),
       body: Stack(
         children: [
@@ -41,89 +46,156 @@ class _HomeState extends State<Home> {
                   child: ListView(
                     children: [
                       Container(
-                        margin:const EdgeInsets.only(
+                        margin: const EdgeInsets.only(
                           top: 50,
                           bottom: 20,
                         ),
-                        child:const Text(
-                          'To Dos',
+                        child: const Text(
+                          'Tasks',
                           style: TextStyle(
-                            fontSize: 34,
+                            fontSize: 30,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
                       ),
-                      for (ToDo todoo in _foundToDo.reversed)
+                      for (ToDo todo in _foundToDo.reversed)
                         ToDoItem(
-                          todo: todoo,
+                          todo: todo,
                           onToDoChanged: _handleToDoChange,
                           onDeleteItem: _deleteToDoItem,
                         ),
                     ],
                   ),
-                )
+                ),
               ],
             ),
           ),
           Align(
             alignment: Alignment.bottomCenter,
-            child: Row(children: [
-              Expanded(
-                child: Container(
-                  margin:const EdgeInsets.only(
-                    bottom: 20,
-                    right: 20,
-                    left: 20,
-                  ),
-                  padding:const EdgeInsets.symmetric(
-                    horizontal: 20,
-                    vertical: 5,
-                  ),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Color.fromARGB(255, 210, 207, 207),
-                        offset: Offset(0.0, 0.0),
-                        blurRadius: 10.0,
-                        spreadRadius: 0.0,
+            child: Row(
+              children: [
+                Expanded(
+                  child: Container(
+                    margin: const EdgeInsets.only(
+                      bottom: 20,
+                      right: 20,
+                      left: 20,
+                    ),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                      vertical: 5,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Color.fromARGB(255, 210, 207, 207),
+                          offset: Offset(0.0, 0.0),
+                          blurRadius: 10.0,
+                          spreadRadius: 0.0,
+                        ),
+                      ],
+                      borderRadius: BorderRadius.circular(80),
+                    ),
+                    child: TextField(
+                      controller: _todoController,
+                      decoration: const InputDecoration(
+                        hintText: 'Add a new todo task',
+                        border: InputBorder.none,
                       ),
-                    ],
-                    borderRadius: BorderRadius.circular(80),
-                  ),
-                  child: TextField(
-                    controller: _todoController,
-                    decoration:const InputDecoration(
-                        hintText: 'Add a new todo item',
-                        border: InputBorder.none),
-                  ),
-                ),
-              ),
-              Container(
-                margin:const EdgeInsets.only(
-                  bottom: 20,
-                  right: 20,
-                ),
-                child: ElevatedButton(
-                  onPressed: () {
-                    _addToDoItem(_todoController.text);
-                  },
-                  style: ElevatedButton.styleFrom(
-                    shadowColor: tdBlue,
-                    minimumSize:const Size(60, 60),
-                    elevation: 10,
-                  ),
-                  child: const Text(
-                    '+',
-                    style: TextStyle(
-                      fontSize: 40,
                     ),
                   ),
                 ),
-              ),
-            ]),
+                Container(
+                  margin: const EdgeInsets.only(
+                    bottom: 20,
+                    right: 20,
+                  ),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      _addToDoItem(_todoController.text);
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: colorAppBar,
+                      shadowColor: colorGrey,
+                      minimumSize: const Size(60, 60),
+                      elevation: 10,
+                    ),
+                    child: const Text(
+                      '+',
+                      style: TextStyle(
+                        fontSize: 40,
+                        color: colorBGColor,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
+      ),
+      drawer: Drawer(
+        elevation: 0,
+        child: Column(
+          children: [
+            const UserAccountsDrawerHeader(
+              decoration: BoxDecoration(
+                color: colorAppBar,
+              ),
+              currentAccountPicture: CircleAvatar(
+                backgroundImage: AssetImage('assets/images/paul.jpg'),
+              ),
+              accountName: Text('Student'),
+              accountEmail: Text('paul.learner@plp.com'),
+            ),
+            ListTile(
+              title: const Text('All Tasks'),
+              leading: const Icon(
+                Icons.task,
+                color: colorAppBar,
+              ),
+              onTap: () => _setSelectedCategory(TaskCategory.all, context),
+            ),
+            ListTile(
+              title: const Text('Completed Tasks'),
+              leading: const Icon(
+                Icons.task_alt,
+                color: colorAppBar,
+              ),
+              onTap: () =>
+                  _setSelectedCategory(TaskCategory.completed, context),
+            ),
+            ListTile(
+              title: const Text('Pending Tasks'),
+              leading: const Icon(
+                Icons.pending_actions,
+                color: colorAppBar,
+              ),
+              onTap: () => _setSelectedCategory(TaskCategory.pending, context),
+            ),
+            ListTile(
+              title: const Text('Help'),
+              leading: const Icon(
+                Icons.help_center,
+                color: colorAppBar,
+              ),
+              onTap: () {
+                // Handle help action
+              },
+            ),
+            ListTile(
+              title: const Text('Logout'),
+              leading: const Icon(
+                Icons.logout,
+                color: colorAppBar,
+              ),
+              onTap: () {
+                // Handle logout action
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -142,10 +214,12 @@ class _HomeState extends State<Home> {
 
   void _addToDoItem(String toDo) {
     setState(() {
-      todosList.add(ToDo(
-        id: DateTime.now().millisecondsSinceEpoch.toString(),
-        todoText: toDo,
-      ));
+      todosList.add(
+        ToDo(
+          id: DateTime.now().millisecondsSinceEpoch.toString(),
+          todoText: toDo,
+        ),
+      );
     });
     _todoController.clear();
   }
@@ -169,18 +243,18 @@ class _HomeState extends State<Home> {
 
   Widget searchBox() {
     return Container(
-      padding:const EdgeInsets.symmetric(horizontal: 15),
+      padding: const EdgeInsets.symmetric(horizontal: 15),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
       ),
       child: TextField(
         onChanged: (value) => _runFilter(value),
-        decoration:const InputDecoration(
+        decoration: const InputDecoration(
           contentPadding: EdgeInsets.all(0),
           prefixIcon: Icon(
             Icons.search,
-            color: tdBlack,
+            color: colorBlack,
             size: 20,
           ),
           prefixIconConstraints: BoxConstraints(
@@ -189,36 +263,40 @@ class _HomeState extends State<Home> {
           ),
           border: InputBorder.none,
           hintText: 'Search',
-          hintStyle: TextStyle(color: tdGrey),
+          hintStyle: TextStyle(color: colorGrey),
         ),
       ),
     );
   }
 
-
-//App Bar
   AppBar _buildAppBar() {
     return AppBar(
-      backgroundColor: tdBGColor,
+      backgroundColor: colorAppBar,
       elevation: 0,
-      title: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        const Icon(
-          Icons.menu,
-          color: tdBlack,
-          size: 30,
-        ),
-        SizedBox(
-          height: 40,
-          width: 40,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child:const Image(
-              image:
-              AssetImage('assets/images/paul.jpg'),
+      foregroundColor: colorWhite, // Set the text and icon colors to white
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          const Text(
+            "To Do App",
+            style: TextStyle(fontSize: 46),
           ),
+          SizedBox(
+            height: 45,
+            width: 45,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Image.asset('assets/images/paul.jpg'),
+            ),
           ),
-        ),
-      ]),
+        ],
+      ),
     );
+  }
+
+  void _setSelectedCategory(TaskCategory category, BuildContext context) {
+    // Handle category selection logic here
+    Navigator.pop(context); // Close the drawer after selection
+    // Implement category filtering logic here if needed
   }
 }

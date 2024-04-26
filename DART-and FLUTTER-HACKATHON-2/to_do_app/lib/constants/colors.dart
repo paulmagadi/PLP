@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-const Color tdRed = Color(0xFFDA4040);
-const Color tdBlue = Color(0xFF5F52EE);
 
-const Color tdBlack = Color(0xFF3A3A3A);
-const Color tdGrey = Color(0xFF717171);
-
-const Color tdBGColor = Color(0xFFEEEFF5);
+const Color colorAppBar = Color.fromARGB(255, 63, 152, 143);
+const Color colorRed = Color.fromARGB(255, 255, 33, 33);
+const Color colorBlack = Color.fromARGB(255, 11, 9, 9);
+const Color colorGrey = Color.fromARGB(255, 154, 154, 154);
+const Color colorBGColor = Color(0xFFEEEFF5);
+const Color colorWhite = Color.fromARGB(255, 255, 255, 255);
