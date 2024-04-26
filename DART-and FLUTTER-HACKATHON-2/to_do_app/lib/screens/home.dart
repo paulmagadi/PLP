@@ -48,8 +48,8 @@ class _HomeState extends State<Home> {
                         child:const Text(
                           'To Dos',
                           style: TextStyle(
-                            fontSize: 30,
-                            fontWeight: FontWeight.w500,
+                            fontSize: 34,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
                       ),
