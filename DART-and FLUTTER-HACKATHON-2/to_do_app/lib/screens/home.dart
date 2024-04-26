@@ -70,12 +70,12 @@ class _HomeState extends State<Home> {
             child: Row(children: [
               Expanded(
                 child: Container(
-                  margin: EdgeInsets.only(
+                  margin:const EdgeInsets.only(
                     bottom: 20,
                     right: 20,
                     left: 20,
                   ),
-                  padding: EdgeInsets.symmetric(
+                  padding:const EdgeInsets.symmetric(
                     horizontal: 20,
                     vertical: 5,
                   ),
@@ -83,41 +83,41 @@ class _HomeState extends State<Home> {
                     color: Colors.white,
                     boxShadow: const [
                       BoxShadow(
-                        color: Colors.grey,
+                        color: Color.fromARGB(255, 210, 207, 207),
                         offset: Offset(0.0, 0.0),
                         blurRadius: 10.0,
                         spreadRadius: 0.0,
                       ),
                     ],
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(80),
                   ),
                   child: TextField(
                     controller: _todoController,
-                    decoration: InputDecoration(
+                    decoration:const InputDecoration(
                         hintText: 'Add a new todo item',
                         border: InputBorder.none),
                   ),
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(
+                margin:const EdgeInsets.only(
                   bottom: 20,
                   right: 20,
                 ),
                 child: ElevatedButton(
-                  child: Text(
-                    '+',
-                    style: TextStyle(
-                      fontSize: 40,
-                    ),
-                  ),
                   onPressed: () {
                     _addToDoItem(_todoController.text);
                   },
                   style: ElevatedButton.styleFrom(
                     shadowColor: tdBlue,
-                    minimumSize: Size(60, 60),
+                    minimumSize:const Size(60, 60),
                     elevation: 10,
+                  ),
+                  child: const Text(
+                    '+',
+                    style: TextStyle(
+                      fontSize: 40,
+                    ),
                   ),
                 ),
               ),
