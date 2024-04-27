@@ -324,8 +324,23 @@ class _HomeState extends State<Home> {
   }
 
   void _setSelectedCategory(TaskCategory category, BuildContext context) {
-    // Handle category selection logic here
-    Navigator.pop(context); // Close the drawer after selection
-    // Implement category filtering logic here if needed
-  }
+    // Close the drawer after selection
+    Navigator.pop(context);
+    
+    // Filter the todo list based on the selected category
+    List<ToDo> filteredTodos;
+    if (category == TaskCategory.all) {
+        filteredTodos = todosList;
+    } else if (category == TaskCategory.completed) {
+        filteredTodos = todosList.where((todo) => todo.isDone).toList();
+    } else if (category == TaskCategory.pending) {
+        filteredTodos = todosList.where((todo) => !todo.isDone).toList();
+    }
+    
+    // Update the state with the filtered list of todo items
+    setState(() {
+        _foundToDo = filteredTodos;
+    });
+}
+
 }
