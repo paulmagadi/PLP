@@ -322,6 +322,7 @@ class _HomeState extends State<Home> {
     );
   }
 
+
   void setSelectedCategory(TaskCategory category, BuildContext context) {
     // Close the drawer after selection
     Navigator.pop(context);
