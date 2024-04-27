@@ -202,7 +202,7 @@ class _HomeState extends State<Home> {
             ),
             ListTile(
               title: const Text('Calendar'),
-              leading: const Icon(Icons.calendar_today, color: Colors.blue),
+              leading: const Icon(Icons.calendar_today, color: colorAppBar),
               onTap: () {
                 Navigator.pushNamed(context, '/calendar');
               },
