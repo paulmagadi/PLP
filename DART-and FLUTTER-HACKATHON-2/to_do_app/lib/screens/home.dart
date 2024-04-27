@@ -179,15 +179,17 @@ class _HomeState extends State<Home> {
               onTap: () => setSelectedCategory(TaskCategory.pending, context),
             ),
             ListTile(
-              title: const Text('About'),
-              leading: const Icon(
-                Icons.more,
-                color: colorAppBar,
-              ),
-              onTap: () {
-                // Handle help action
-              },
-            ),
+    title: const Text('About'),
+    leading: const Icon(
+        Icons.info,
+        color: Colors.blue,
+    ),
+    onTap: () {
+        // Navigate to the About page
+        Navigator.pushNamed(context, '/about');
+    },
+),
+
             ListTile(
               title: const Text('Help'),
               leading: const Icon(
