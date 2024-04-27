@@ -18,7 +18,10 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false, // Remove DEBUG banner
       title: 'To Do App',
-      home: Home(), //Home view
+      home: Home(), 
+      routes: {
+        '/screens/about': (context) => AboutPage(),
+    },//Home view
     );
   }
 }
