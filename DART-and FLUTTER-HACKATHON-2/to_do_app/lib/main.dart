@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import './screens/home.dart';
 import './screens/about.dart';
+import './screens/help.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
       home: const Home(),
       routes: {
         '/about': (context) => AboutPage(),
+        '/help': (context) => HelpPage(),
       }, //Home view
     );
   }
