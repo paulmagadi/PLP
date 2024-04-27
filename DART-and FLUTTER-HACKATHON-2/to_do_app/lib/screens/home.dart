@@ -201,6 +201,13 @@ class _HomeState extends State<Home> {
               },
             ),
             ListTile(
+              title: const Text('Calendar'),
+              leading: const Icon(Icons.calendar_today, color: Colors.blue),
+              onTap: () {
+                Navigator.pushNamed(context, '/calendar');
+              },
+            ),
+            ListTile(
               title: const Text('Logout'),
               leading: const Icon(
                 Icons.logout,
