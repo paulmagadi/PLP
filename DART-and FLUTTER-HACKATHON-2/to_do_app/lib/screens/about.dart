@@ -5,29 +5,29 @@ class AboutPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('About'),
+        title: const Text('About Task Master'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
+      body: const Padding(
+        padding:  EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
+             Text(
               'About This App',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 16),
-            const Text(
+             SizedBox(height: 16),
+             Text(
               'This is a to-do app designed to help you stay organized and manage your tasks effectively. '
               'You can add, complete, and delete tasks as needed.',
             ),
-            const SizedBox(height: 16),
-            const Text(
+             SizedBox(height: 16),
+             Text(
               'Version: 1.0.0',
               style: TextStyle(fontSize: 16, color: Colors.grey),
             ),
-            const SizedBox(height: 16),
-            const Text(
+             SizedBox(height: 16),
+             Text(
               'Developed by: Your Name',
               style: TextStyle(fontSize: 16, color: Colors.grey),
             ),
