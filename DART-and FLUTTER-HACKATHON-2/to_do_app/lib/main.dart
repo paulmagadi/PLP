@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import './screens/home.dart';
 import './screens/about.dart';
 import './screens/help.dart';
+import './screens/calendar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/about': (context) => AboutPage(),
         '/help': (context) => HelpPage(),
+        '/calendar': (context) => CalendarPage(),
       }, //Home view
     );
   }
