@@ -28,7 +28,7 @@ class AboutPage extends StatelessWidget {
             ),
              SizedBox(height: 16),
              Text(
-              'Developed by: Your Name',
+              'Developed by: Paul SQ Magadi',
               style: TextStyle(fontSize: 16, color: Colors.grey),
             ),
           ],
