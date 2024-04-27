@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import './screens/home.dart';
+import './screens/about.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,13 +16,15 @@ class MyApp extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
         statusBarColor:
             Colors.transparent)); //set status bar color to transparent
-    return const MaterialApp(
+    return  MaterialApp(
       debugShowCheckedModeBanner: false, // Remove DEBUG banner
       title: 'To Do App',
-      home: Home(), 
+      home: const Home(), 
       routes: {
-        '/screens/about': (context) => AboutPage(),
+        '/about': (context) => AboutPage(),
     },//Home view
     );
   }
 }
+
+
