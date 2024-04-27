@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../constants/colors.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class CalendarPage extends StatefulWidget {
@@ -10,12 +11,17 @@ class _CalendarPageState extends State<CalendarPage> {
   CalendarFormat _calendarFormat = CalendarFormat.month;
   DateTime _selectedDay = DateTime.now();
   DateTime _focusedDay = DateTime.now();
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Calendar'),
+        backgroundColor: colorAppBar,
+        foregroundColor: colorWhite, //set Text and icon colors to white
+        title: const Text(
+          'Calendar',
+          // style: TextStyle(color: colorWhite),
+        ),
       ),
       body: TableCalendar(
         firstDay: DateTime.utc(2000, 1, 1),

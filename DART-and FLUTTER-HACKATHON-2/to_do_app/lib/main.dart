@@ -23,9 +23,10 @@ class MyApp extends StatelessWidget {
       title: 'To Do App',
       home: const Home(),
       routes: {
-        '/about': (context) => AboutPage(),
-        '/help': (context) => HelpPage(),
-        '/calendar': (context) => CalendarPage(),
+        '/about': (context) => AboutPage(), //Route to About Page/screen
+        '/help': (context) => HelpPage(), //Route to Help Page/screen
+        '/calendar': (context) =>
+            CalendarPage(), //Route to Calendar Page/screen
       }, //Home view
     );
   }
