@@ -11,7 +11,6 @@ enum TaskCategory {
 
 TaskCategory currentCategory = TaskCategory.all;
 
-
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -34,53 +33,56 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: colorBGColor,
-      appBar: _buildAppBar(), //appbar widget
+      appBar: _buildAppBar(), // AppBar widget
       body: Stack(
-        //Use a stack layout to enable the add task form stack over the tasks
+        // Use a stack layout to enable the add task form stack over the tasks
         children: [
           Container(
             margin: const EdgeInsets.only(bottom: 70),
-            padding: const EdgeInsets.symmetric(
-              horizontal: 20,
-              vertical: 15,
-            ),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
             child: Column(
               children: [
-                searchBox(), //search widget
+                searchBox(), // Search widget
                 Expanded(
-                  child: ListView(
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.only(
-                          top: 15,
-                          bottom: 15,
-                        ),
-                        child: const Center(
+                  child: _foundToDo.isEmpty
+                      ? Center(
                           child: Text(
-                            'Tasks',
-                            style: TextStyle(
-                              fontSize: 24,
+                            'YOU CURRENTLY HAVE NO TASK',
+                            style: const TextStyle(
+                              fontSize: 18,
+                              color: colorGrey,
                               fontWeight: FontWeight.w600,
-                              // fontFamily: 'Raleway',
                             ),
                           ),
+                        )
+                      : ListView(
+                          children: [
+                            Container(
+                              margin:
+                                  const EdgeInsets.only(top: 15, bottom: 15),
+                              child: Center(
+                                child: Text(
+                                  getCategoryTitle(),
+                                  style: const TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            for (ToDo todo in _foundToDo.reversed)
+                              ToDoItem(
+                                todo: todo,
+                                onToDoChanged: _handleToDoChange,
+                                onDeleteItem: _deleteToDoItem,
+                              ),
+                          ],
                         ),
-                      ),
-                      for (ToDo todo in _foundToDo
-                          .reversed) // New tasks will be shown first
-                        ToDoItem(
-                          todo: todo,
-                          onToDoChanged: _handleToDoChange,
-                          onDeleteItem: _deleteToDoItem,
-                        ),
-                    ],
-                  ),
                 ),
               ],
             ),
           ),
-
-          //Text Field for adding new task
+          // Text Field for adding new tasks
           Align(
             alignment: Alignment.bottomCenter,
             child: Row(
@@ -97,10 +99,10 @@ class _HomeState extends State<Home> {
                       vertical: 5,
                     ),
                     decoration: BoxDecoration(
-                      color: colorWhite,
+                      color: Colors.white,
                       boxShadow: const [
                         BoxShadow(
-                          color: colorGrey,
+                          color: Colors.grey,
                           offset: Offset(0.0, 0.0),
                           blurRadius: 5.0,
                           spreadRadius: 0.0,
@@ -117,7 +119,7 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                 ),
-                //Eleveted Button for adding tasks
+                // Elevated Button for adding tasks
                 Container(
                   margin: const EdgeInsets.only(
                     bottom: 20,
@@ -129,7 +131,7 @@ class _HomeState extends State<Home> {
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: colorAppBar,
-                      shadowColor: colorGrey,
+                      shadowColor: Colors.grey,
                       minimumSize: const Size(40, 75),
                       elevation: 10,
                     ),
@@ -202,7 +204,7 @@ class _HomeState extends State<Home> {
               title: const Text('Help'),
               leading: const Icon(
                 Icons.help_center,
-                color: colorAppBar, // Or desired color
+                color: colorAppBar,
               ),
               onTap: () {
                 // Navigate to the Help page
@@ -211,8 +213,12 @@ class _HomeState extends State<Home> {
             ),
             ListTile(
               title: const Text('Calendar'),
-              leading: const Icon(Icons.calendar_today, color: colorAppBar),
+              leading: const Icon(
+                Icons.calendar_today,
+                color: colorAppBar,
+              ),
               onTap: () {
+                // Navigate to the Calendar page
                 Navigator.pushNamed(context, '/calendar');
               },
             ),
@@ -224,6 +230,8 @@ class _HomeState extends State<Home> {
               ),
               onTap: () {
                 // Handle logout action
+                // Add your logout logic here, e.g., sign out the user, navigate to the login screen
+                // Navigator.pushReplacementNamed(context, '/login');
               },
             ),
           ],
@@ -232,28 +240,31 @@ class _HomeState extends State<Home> {
     );
   }
 
-//Handle tasks state
+  // Handle tasks state
   void _handleToDoChange(ToDo todo) {
     setState(() {
       todo.isDone = !todo.isDone;
     });
   }
 
-// Delete task
+  // Delete task
   void _deleteToDoItem(String id) {
     setState(() {
       todosList.removeWhere((item) => item.id == id);
+      // After deletion, check if the task list is empty
+      if (todosList.isEmpty) {
+        // If empty, display message or handle as needed
+        // Here, you may want to display a message elsewhere in your app
+      }
     });
   }
 
-//Add new task with unique id
+  // Add new task with unique id
   void _addToDoItem(String toDo) {
     setState(() {
       todosList.add(
         ToDo(
-          id: DateTime.now()
-              .millisecondsSinceEpoch
-              .toString(), // Ensure every new task has unique id
+          id: DateTime.now().millisecondsSinceEpoch.toString(),
           todoText: toDo,
         ),
       );
@@ -261,7 +272,7 @@ class _HomeState extends State<Home> {
     _todoController.clear();
   }
 
-// Search  functionality
+  // Search functionality
   void _runFilter(String enteredKeyword) {
     List<ToDo> results = [];
     if (enteredKeyword.isEmpty) {
@@ -278,7 +289,7 @@ class _HomeState extends State<Home> {
     });
   }
 
-//Search box
+  // Search box
   Widget searchBox() {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
@@ -307,111 +318,100 @@ class _HomeState extends State<Home> {
     );
   }
 
-//Appbar
-  // AppBar _buildAppBar() {
-  //   return AppBar(
-  //     backgroundColor: colorAppBar,
-  //     foregroundColor: colorWhite, //set Text and icon colors to white
-  //     title: Row(
-  //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //       children: [
-  //         const Text(
-  //           "Task Master",
-  //           style: TextStyle(fontSize: 28),
-  //         ),
-  //         Column(
-  //           children: [
-  //             SizedBox(
-  //               // Here I use SizeBox instead of Container
-  //               height: 36,
-  //               width: 36,
-  //               child: ClipRRect(
-  //                 borderRadius: BorderRadius.circular(50),
-  //                 child: Image.asset('assets/images/paul.jpg'),
-  //               ),
-  //             ),
-  //             const Center(
-  //               child: Text(
-  //                 "Magadi",
-  //                 style: TextStyle(fontSize: 13),
-  //               ),
-  //             )
-  //           ],
-  //         ),
-  //       ],
-  //     ),
-  //   );
-  // }
-AppBar _buildAppBar() {
-    // Determine the title based on the current task category
-    String title = '';
-    if (currentCategory == TaskCategory.all) {
-        title = 'All Tasks';
-    } else if (currentCategory == TaskCategory.completed) {
-        title = 'Completed Tasks';
-    } else if (currentCategory == TaskCategory.pending) {
-        title = 'Pending Tasks';
-    }
-    
+  // AppBar
+  AppBar _buildAppBar() {
     return AppBar(
-        backgroundColor: colorAppBar,
-        foregroundColor: Colors.white,
-        title: Text(
-            title,
-            style: const TextStyle(fontSize: 28),
-        ),
-        actions: [
-            // Add any additional actions (e.g., a profile picture)
-            SizedBox(
-                height: 40,
-                width: 40,
-                child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: Image.asset('assets/images/paul.jpg'),
-                ),
-            ),
+      backgroundColor: colorAppBar,
+      foregroundColor: Colors.white, // Set text and icon colors to white
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          const Text(
+            "Task Master",
+            style: TextStyle(fontSize: 28),
+          ),
+          Row(
+            children: [
+              Column(
+                children: [
+                  SizedBox(
+                    // Here I use SizeBox instead of Container
+                    height: 30,
+                    width: 30,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(50),
+                      child: Image.asset('assets/images/paul.jpg'),
+                    ),
+                  ),
+                  const Center(
+                    child: Text(
+                      "Magadi",
+                      style: TextStyle(fontSize: 13),
+                    ),
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  // Add a PopupMenuButton to the column for the dropdown
+                  PopupMenuButton<String>(
+                    onSelected: (value) {
+                      // Handle menu item selection
+                      if (value == 'logout') {
+                        // Perform logout action
+                      }
+                    },
+                    itemBuilder: (BuildContext context) => [
+                      const PopupMenuItem<String>(
+                        value: 'logout',
+                        child: Row(
+                          children: [
+                            Icon(Icons.logout, color: Colors.black),
+                            SizedBox(width: 10),
+                            Text('Logout'),
+                          ],
+                        ),
+                      ),
+                      // more menu items
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
         ],
+      ),
     );
-}
+  }
 
-//   void setSelectedCategory(TaskCategory category, BuildContext context) {
-//     // Close the drawer after selection
-//     Navigator.pop(context);
+  // Function to get the title based on the current task category
+  String getCategoryTitle() {
+    switch (currentCategory) {
+      case TaskCategory.all:
+        return 'All Tasks';
+      case TaskCategory.completed:
+        return 'Completed Tasks';
+      case TaskCategory.pending:
+        return 'Pending Tasks';
+      default:
+        return 'Tasks';
+    }
+  }
 
-//     // Initialize filteredTodos
-//     List<ToDo> filteredTodos = [];
-
-//     // Filter the todo list based on the selected category
-//     if (category == TaskCategory.all) {
-//       filteredTodos = todosList;
-//     } else if (category == TaskCategory.completed) {
-//       filteredTodos = todosList.where((todo) => todo.isDone).toList();
-//     } else if (category == TaskCategory.pending) {
-//       filteredTodos = todosList.where((todo) => !todo.isDone).toList();
-//     }
-
-//     // Update the state with the filtered list of todo items
-//     setState(() {
-//       _foundToDo = filteredTodos;
-//     });
-//   }
-
-void setSelectedCategory(TaskCategory category, BuildContext context) {
+  // Set the selected category
+  void setSelectedCategory(TaskCategory category, BuildContext context) {
     // Close the drawer after selection
     Navigator.pop(context);
-    
     // Update the current category and filter the tasks
     setState(() {
-        currentCategory = category;
-
-        if (category == TaskCategory.all) {
-            _foundToDo = todosList;
-        } else if (category == TaskCategory.completed) {
-            _foundToDo = todosList.where((todo) => todo.isDone).toList();
-        } else if (category == TaskCategory.pending) {
-            _foundToDo = todosList.where((todo) => !todo.isDone).toList();
-        }
+      currentCategory = category;
+      if (category == TaskCategory.all) {
+        _foundToDo = todosList;
+      } else if (category == TaskCategory.completed) {
+        _foundToDo = todosList.where((todo) => todo.isDone).toList();
+      } else if (category == TaskCategory.pending) {
+        _foundToDo = todosList.where((todo) => !todo.isDone).toList();
+      }
     });
-}
-
+  }
 }
