@@ -33,6 +33,7 @@ class _HomeState extends State<Home> {
       backgroundColor: colorBGColor,
       appBar: _buildAppBar(),
       body: Stack(
+        //Use a stack layout
         children: [
           Container(
             padding: const EdgeInsets.symmetric(
@@ -41,24 +42,28 @@ class _HomeState extends State<Home> {
             ),
             child: Column(
               children: [
-                searchBox(),
+                searchBox(), //search widget
                 Expanded(
                   child: ListView(
                     children: [
                       Container(
                         margin: const EdgeInsets.only(
-                          top: 50,
-                          bottom: 20,
+                          top: 15,
+                          bottom: 15,
                         ),
-                        child: const Text(
-                          'Tasks',
-                          style: TextStyle(
-                            fontSize: 30,
-                            fontWeight: FontWeight.w600,
+                        child: const Center(
+                          child: Text(
+                            'Tasks',
+                            style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.w600,
+                              // fontFamily: 'Raleway',
+                            ),
                           ),
                         ),
                       ),
-                      for (ToDo todo in _foundToDo.reversed)
+                      for (ToDo todo in _foundToDo
+                          .reversed) // New tasks will be shown first
                         ToDoItem(
                           todo: todo,
                           onToDoChanged: _handleToDoChange,
@@ -77,7 +82,7 @@ class _HomeState extends State<Home> {
                 Expanded(
                   child: Container(
                     margin: const EdgeInsets.only(
-                      bottom: 20,
+                      bottom: 10,
                       right: 20,
                       left: 20,
                     ),
@@ -86,16 +91,16 @@ class _HomeState extends State<Home> {
                       vertical: 5,
                     ),
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: colorWhite,
                       boxShadow: const [
                         BoxShadow(
-                          color: Color.fromARGB(255, 210, 207, 207),
+                          color: colorGrey,
                           offset: Offset(0.0, 0.0),
-                          blurRadius: 10.0,
+                          blurRadius: 5.0,
                           spreadRadius: 0.0,
                         ),
                       ],
-                      borderRadius: BorderRadius.circular(80),
+                      borderRadius: BorderRadius.circular(20),
                     ),
                     child: TextField(
                       controller: _todoController,
@@ -118,7 +123,7 @@ class _HomeState extends State<Home> {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: colorAppBar,
                       shadowColor: colorGrey,
-                      minimumSize: const Size(60, 60),
+                      minimumSize: const Size(40, 75),
                       elevation: 10,
                     ),
                     child: const Text(
@@ -146,7 +151,7 @@ class _HomeState extends State<Home> {
               currentAccountPicture: CircleAvatar(
                 backgroundImage: AssetImage('assets/images/paul.jpg'),
               ),
-              accountName: Text('Student'),
+              accountName: Text('Paul SQ Magadi'),
               accountEmail: Text('paul.learner@plp.com'),
             ),
             ListTile(
@@ -173,6 +178,16 @@ class _HomeState extends State<Home> {
                 color: colorAppBar,
               ),
               onTap: () => _setSelectedCategory(TaskCategory.pending, context),
+            ),
+            ListTile(
+              title: const Text('About'),
+              leading: const Icon(
+                Icons.more,
+                color: colorAppBar,
+              ),
+              onTap: () {
+                // Handle help action
+              },
             ),
             ListTile(
               title: const Text('Help'),
@@ -206,6 +221,7 @@ class _HomeState extends State<Home> {
     });
   }
 
+// Delete
   void _deleteToDoItem(String id) {
     setState(() {
       todosList.removeWhere((item) => item.id == id);
@@ -224,6 +240,7 @@ class _HomeState extends State<Home> {
     _todoController.clear();
   }
 
+// Search  functionality
   void _runFilter(String enteredKeyword) {
     List<ToDo> results = [];
     if (enteredKeyword.isEmpty) {
@@ -241,12 +258,13 @@ class _HomeState extends State<Home> {
     });
   }
 
+//Search box
   Widget searchBox() {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 15),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(10),
       ),
       child: TextField(
         onChanged: (value) => _runFilter(value),
@@ -258,36 +276,47 @@ class _HomeState extends State<Home> {
             size: 20,
           ),
           prefixIconConstraints: BoxConstraints(
-            maxHeight: 20,
+            maxHeight: 25,
             minWidth: 25,
           ),
           border: InputBorder.none,
-          hintText: 'Search',
+          hintText: 'Search Task',
           hintStyle: TextStyle(color: colorGrey),
         ),
       ),
     );
   }
 
+//Appbar
   AppBar _buildAppBar() {
     return AppBar(
       backgroundColor: colorAppBar,
-      elevation: 0,
-      foregroundColor: colorWhite, // Set the text and icon colors to white
+      foregroundColor: colorWhite, //set Text and icon colors to white
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           const Text(
-            "To Do App",
-            style: TextStyle(fontSize: 46),
+            "Task Master",
+            style: TextStyle(fontSize: 28),
           ),
-          SizedBox(
-            height: 45,
-            width: 45,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: Image.asset('assets/images/paul.jpg'),
-            ),
+          Column(
+            children: [
+              SizedBox(
+                // Here I use SizeBox instead of Container
+                height: 36,
+                width: 36,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(50),
+                  child: Image.asset('assets/images/paul.jpg'),
+                ),
+              ),
+              const Center(
+                child: Text(
+                  "Paul SQ Magadi",
+                  style: TextStyle(fontSize: 13),
+                ),
+              )
+            ],
           ),
         ],
       ),

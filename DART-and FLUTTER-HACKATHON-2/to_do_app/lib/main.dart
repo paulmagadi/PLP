@@ -9,14 +9,15 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
+  //root widget
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-        const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+        statusBarColor:
+            Colors.transparent)); //set status bar color to transparent
     return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'To Do App',  
+      debugShowCheckedModeBanner: false, // Remove DEBUG banner
+      title: 'To Do App',
       home: Home(), //Home view
     );
   }
