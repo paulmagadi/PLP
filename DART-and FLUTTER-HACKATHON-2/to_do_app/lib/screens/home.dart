@@ -182,7 +182,7 @@ class _HomeState extends State<Home> {
     title: const Text('About'),
     leading: const Icon(
         Icons.info,
-        color: Colors.blue,
+        color: colorAppBar,
     ),
     onTap: () {
         // Navigate to the About page

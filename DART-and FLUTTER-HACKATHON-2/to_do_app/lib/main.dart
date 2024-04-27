@@ -16,15 +16,13 @@ class MyApp extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
         statusBarColor:
             Colors.transparent)); //set status bar color to transparent
-    return  MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false, // Remove DEBUG banner
       title: 'To Do App',
-      home: const Home(), 
+      home: const Home(),
       routes: {
         '/about': (context) => AboutPage(),
-    },//Home view
+      }, //Home view
     );
   }
 }
-
-
