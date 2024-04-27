@@ -1,33 +1,35 @@
 # Task Master
-Home Screen
-![Image](5.png)
+This is a simple ToDo app
 
-About Screen
-![Image](1.png)
+### Home Screen
+![Image](5.png){width=50 height=50}
 
-Drawer
-![Image](6.png)
+### About Screen
+![Image](1.png){width=50 height=50}
 
-Search Functionality
-![Image](10.png)
+### Drawer
+![Image](6.png){width=50 height=50}
 
-Calender Screen
-![Image](3.png)
+### Search Functionality
+![Image](10.png){width=50 height=50}
 
-Logout Menu
-![Image](4.png)
+### Calender Screen
+![Image](3.png){width=50 height=50}
 
-All Task
-![Image](7.png)
+### Logout Menu
+![Image](4.png){width=50 height=50}
 
-Completed Tasks
-![Image](8.png)
+### All Task
+![Image](7.png){width=50 height=50}
 
-Pending Tasks
-![Image](9.png)
+### Completed Tasks
+![Image](8.png){width=50 height=50}
 
-No Task
-![Image](11.png)
+### Pending Tasks
+![Image](9.png){width=50 height=50}
 
-Help Screen
-![Image](2.png)
+### No Task
+![Image](11.png){width=50 height=50}
+
+### Help Screen
+![Image](2.png){width=50 height=50}
