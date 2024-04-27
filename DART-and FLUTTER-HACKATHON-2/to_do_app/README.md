@@ -5,31 +5,31 @@ This is a simple ToDo app
 ![Image](5.png){width=50 height=50}
 
 ### About Screen
-![Image](1.png){width=50 height=50}
+<img src="1.png" width= "60%" height= "auto">
 
 ### Drawer
-![Image](6.png){width=50 height=50}
+<img src="6.png" width= "60%" height= "auto">
 
 ### Search Functionality
 ![Image](10.png){width=50 height=50}
 
 ### Calender Screen
-![Image](3.png){width=50 height=50}
+<img src="3.png" width= "60%" height= "auto">
 
 ### Logout Menu
-![Image](4.png){width=50 height=50}
+<img src="4.png" width= "60%" height= "auto">
 
 ### All Task
-![Image](7.png){width=50 height=50}
+<img src="7.png" width= "60%" height= "auto">
 
 ### Completed Tasks
-![Image](8.png){width=50 height=50}
+<img src="8.png" width= "60%" height= "auto">
 
 ### Pending Tasks
-![Image](9.png){width=50 height=50}
+<img src="9.png" width= "60%" height= "auto">
 
 ### No Task
-![Image](11.png){width=50 height=50}
+<img src="11.png" width= "60%" height= "auto">
 
 ### Help Screen
-![Image](2.png){width=50 height=50}
+<img src="2.png" width= "60%" height= "auto">
