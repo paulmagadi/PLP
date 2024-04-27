@@ -160,7 +160,7 @@ class _HomeState extends State<Home> {
                 Icons.task,
                 color: colorAppBar,
               ),
-              onTap: () => _setSelectedCategory(TaskCategory.all, context),
+              onTap: () => setSelectedCategory(TaskCategory.all, context),
             ),
             ListTile(
               title: const Text('Completed Tasks'),
@@ -168,8 +168,7 @@ class _HomeState extends State<Home> {
                 Icons.task_alt,
                 color: colorAppBar,
               ),
-              onTap: () =>
-                  _setSelectedCategory(TaskCategory.completed, context),
+              onTap: () => setSelectedCategory(TaskCategory.completed, context),
             ),
             ListTile(
               title: const Text('Pending Tasks'),
@@ -177,7 +176,7 @@ class _HomeState extends State<Home> {
                 Icons.pending_actions,
                 color: colorAppBar,
               ),
-              onTap: () => _setSelectedCategory(TaskCategory.pending, context),
+              onTap: () => setSelectedCategory(TaskCategory.pending, context),
             ),
             ListTile(
               title: const Text('About'),
@@ -323,27 +322,25 @@ class _HomeState extends State<Home> {
     );
   }
 
-  void _setSelectedCategory(TaskCategory category, BuildContext context) {
-    void _setSelectedCategory(TaskCategory category, BuildContext context) {
-      // Close the drawer after selection
-      Navigator.pop(context);
+  void setSelectedCategory(TaskCategory category, BuildContext context) {
+    // Close the drawer after selection
+    Navigator.pop(context);
 
-      // Initialize filteredTodos
-      List<ToDo> filteredTodos = [];
+    // Initialize filteredTodos
+    List<ToDo> filteredTodos = [];
 
-      // Filter the todo list based on the selected category
-      if (category == TaskCategory.all) {
-        filteredTodos = todosList;
-      } else if (category == TaskCategory.completed) {
-        filteredTodos = todosList.where((todo) => todo.isDone).toList();
-      } else if (category == TaskCategory.pending) {
-        filteredTodos = todosList.where((todo) => !todo.isDone).toList();
-      }
-
-      // Update the state with the filtered list of todo items
-      setState(() {
-        _foundToDo = filteredTodos;
-      });
+    // Filter the todo list based on the selected category
+    if (category == TaskCategory.all) {
+      filteredTodos = todosList;
+    } else if (category == TaskCategory.completed) {
+      filteredTodos = todosList.where((todo) => todo.isDone).toList();
+    } else if (category == TaskCategory.pending) {
+      filteredTodos = todosList.where((todo) => !todo.isDone).toList();
     }
+
+    // Update the state with the filtered list of todo items
+    setState(() {
+      _foundToDo = filteredTodos;
+    });
   }
 }
