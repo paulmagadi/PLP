@@ -193,10 +193,11 @@ class _HomeState extends State<Home> {
               title: const Text('Help'),
               leading: const Icon(
                 Icons.help_center,
-                color: colorAppBar,
+                color: colorAppBar, // Or desired color
               ),
               onTap: () {
-                // Handle help action
+                // Navigate to the Help page
+                Navigator.pushNamed(context, '/help');
               },
             ),
             ListTile(
