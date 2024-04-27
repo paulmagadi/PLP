@@ -2,7 +2,8 @@
 This is a simple ToDo app
 
 Watch the illustration here:
-[![Watch the Video Illustration]()](https://www.loom.com/share/8ea5970c08da47a98f4fbb08b7984856?sid=8433374a-1083-4031-8de4-bb13d344ec90)
+
+[![Simple To Do app]()](https://www.loom.com/share/8ea5970c08da47a98f4fbb08b7984856?sid=8433374a-1083-4031-8de4-bb13d344ec90)
 
 
 
