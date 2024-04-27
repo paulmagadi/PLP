@@ -179,17 +179,16 @@ class _HomeState extends State<Home> {
               onTap: () => setSelectedCategory(TaskCategory.pending, context),
             ),
             ListTile(
-    title: const Text('About'),
-    leading: const Icon(
-        Icons.info,
-        color: colorAppBar,
-    ),
-    onTap: () {
-        // Navigate to the About page
-        Navigator.pushNamed(context, '/about');
-    },
-),
-
+              title: const Text('About'),
+              leading: const Icon(
+                Icons.info,
+                color: colorAppBar,
+              ),
+              onTap: () {
+                // Navigate to the About page
+                Navigator.pushNamed(context, '/about');
+              },
+            ),
             ListTile(
               title: const Text('Help'),
               leading: const Icon(
@@ -323,7 +322,6 @@ class _HomeState extends State<Home> {
       ),
     );
   }
-
 
   void setSelectedCategory(TaskCategory category, BuildContext context) {
     // Close the drawer after selection
