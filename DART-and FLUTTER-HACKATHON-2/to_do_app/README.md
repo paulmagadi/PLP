@@ -2,7 +2,7 @@
 This is a simple ToDo app
 
 Watch the illustration here:
-[![YouTube Video](5.png](https://www.loom.com/share/8ea5970c08da47a98f4fbb08b7984856?sid=8433374a-1083-4031-8de4-bb13d344ec90)
+[![Watch the Video Illustration]](https://www.loom.com/share/8ea5970c08da47a98f4fbb08b7984856?sid=8433374a-1083-4031-8de4-bb13d344ec90)
 
 ## Home Screen
 <img src="5.png" width= "50%" height= "auto">
