@@ -4,10 +4,31 @@ import './screens/home.dart';
 import './screens/about.dart';
 import './screens/help.dart';
 import './screens/calendar.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(const MyApp());
 }
+
+_launchURLBrowser() async {
+  var url = Uri.parse("https://www.whatsapp.com/");
+  if (await canLaunchUrl(url)) {
+    await launchUrl(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
+
+_launchURLApp() async {
+  var url = Uri.parse("https://www.whatsapp.com/");
+  if (await canLaunchUrl(url)) {
+    await launchUrl(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
+
+
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
