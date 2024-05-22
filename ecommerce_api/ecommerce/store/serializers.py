@@ -1,8 +1,6 @@
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 from .models import Product, Category, Specification
 from rest_framework import serializers
-
-
 
 
 
