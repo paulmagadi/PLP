@@ -1,4 +1,4 @@
-from datetime import timezone
+from datetime import datetime, timezone
 from django.db import models
 
 class Category(models.Model):
@@ -32,7 +32,7 @@ class Product(models.Model):
     is_new = models.BooleanField(default=False)
     is_featured = models.BooleanField(default=False)
     is_listed = models.BooleanField(default=False)
-    created_at = models.DateTimeField(default=timezone.now)
+    created_at = models.DateTimeField(default=datetime.now)
     specification = models.ManyToManyField(Specification, blank=True, default=1, null=True)
     
 
